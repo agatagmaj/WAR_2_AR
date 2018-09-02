@@ -1,5 +1,7 @@
-from Modul_2.WAR_2_AR.clcrypto import password_hash, generate_salt
-from Modul_2.WAR_2_AR.get_connection import get_connection
+# from Modul_2.WAR_2_AR.clcrypto import password_hash, generate_salt
+# from  Modul_2.WAR_2_AR.get_connection import get_connection
+from clcrypto import password_hash, generate_salt
+from  get_connection import get_connection
 
 
 class Users(object):
@@ -87,10 +89,16 @@ if __name__ == "__main__":
 
     cnx = get_connection()
     cursor = cnx.cursor()
+    # stworzyc kursor, który tworzy słownik i wyświetla alternatywa dla wyświetlania jednego atrybutu poniżej
+    a = Users.load_all_users(cursor)
+    b = []
+    for user in a:
+        b.append(user.username)
+    print(b)
 
     ### delete object
-    a = Users.load_user_by_id(cursor, 2)
-    a.delete(cursor)
+    # a = Users.load_user_by_id(cursor, 2)
+    # a.delete(cursor)
 
     cursor.close()
     cnx.close()
